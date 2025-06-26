@@ -17,7 +17,7 @@ class FirtsData extends Seeder
         $user->name = "Admin";
         $user->email = "admin@kasir11.com";
         $user->password = bcrypt('123456');
-        $user->peran = 'admin';
+        $user->role = 'admin';
         $user->save();
     }
 }

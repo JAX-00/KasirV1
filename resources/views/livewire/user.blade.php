@@ -61,7 +61,40 @@
                             Add User
                         </div>
                         <div class="card-body">
-                            Test
+                            <form action="" wire:submit='save'>
+                                <label for="">Name</label>
+                                <input type="text" class="form-control" wire:model='name' />
+                                @error('name')
+                                    <Span class="text-danger">{{ $message }}</Span>
+                                @enderror
+                                <br />
+
+                                <label for="">Email</label>
+                                <input type="email" class="form-control" wire:model='email' />
+                                @error('email')
+                                    <Span class="text-danger">{{ $message }}</Span>
+                                @enderror
+                                <br />
+
+                                <label for="">Password</label>
+                                <input type="password" class="form-control" wire:model='password' />
+                                @error('password')
+                                    <Span class="text-danger">{{ $message }}</Span>
+                                @enderror
+                                <br />
+
+                                <label for="">Role</label>
+                                <select name="" id="" class="form-control" wire:model="role">
+                                    <option value="">--Choose your role</option>
+                                    <option value="admin">Admin</option>
+                                    <option value="cashier"> Casher</option>
+                                </select>
+                                @error('role')
+                                    <Span class="text-danger">{{ $message }}</Span>
+                                @enderror
+                                <br />
+                                <button type="submit" class="btn btn-primary mt-4">Save</button>
+                            </form>
                         </div>
                     </div>
                 @elseif ($ChoseMenu == 'edit')
