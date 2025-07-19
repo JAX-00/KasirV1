@@ -44,7 +44,7 @@
                                                     class="btn {{ $ChoseMenu == 'edit' ? 'btn-primary' : 'btn-outline-primary' }}">
                                                     Edit Users
                                                 </button>
-                                                <button wire:click="choseMenu('delete')"
+                                                <button wire:click="chooseDelete({{ $user->id }})"
                                                     class="btn {{ $ChoseMenu == 'delete' ? 'btn-primary' : 'btn-outline-primary' }}">
                                                     delete Users
                                                 </button>
@@ -107,12 +107,16 @@
                         </div>
                     </div>
                 @elseif ($ChoseMenu == 'delete')
-                    <div class="card border-primary">
-                        <div class="card-header">
+                    <div class="card border-danger">
+                        <div class="card-header bg-danger text-white">
                             Delete User
                         </div>
                         <div class="card-body">
-                            Test
+                            Do you sure to delete this user ?
+                            <p>Name: {{ $choosedUser->name }}</p>
+
+                            <button class="btn btn-danger" wire:click='delete'>Delete</button>
+                            <button class="btn btn-secondary" wire:click='cancel'>Cancel</button>
                         </div>
                     </div>
                 @endif

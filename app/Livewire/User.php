@@ -12,6 +12,24 @@ class User extends Component
     public $email;
     public $role;
     public $password;
+    public $choosedUser;
+
+    public function chooseDelete($id)
+    {
+        $this->choosedUser = ModelUser::findOrFail($id);
+        $this->ChoseMenu = 'delete';
+    }
+
+    public function delete()
+    {
+        $this->choosedUser->delete();
+        $this->reset();
+    }
+
+    public function cancel()
+    {
+        $this->reset();
+    }
 
     public function save()
     {
