@@ -14,6 +14,42 @@ class User extends Component
     public $password;
     public $choosedUser;
 
+    public function chooseEdit($id)
+    {
+        $this->choosedUser = ModelUser::findOrFail($id);
+        $this->name = $this->choosedUser->name;
+        $this->email = $this->choosedUser->email;
+        $this->role = $this->choosedUser->role;
+        $this->ChoseMenu = 'edit';
+    }
+
+    public function update()
+    {
+        // make validation
+        $this->validate([
+            'name' => 'required',
+            'email' => ['required', 'email', 'unique:users,email,' . $this->choosedUser->id],
+            'role' => 'required',
+        ], [
+            // Show massage if the condition not met
+            'name.required' => 'Name is required',
+            'email.required' => 'Email is required',
+            'email.email' => 'Format should be an email address',
+            'email.unique' => 'The email is already registered',
+            'role.required' => 'Role is required',
+        ]);
+        $save = $this->choosedUser;
+        $save->name = $this->name;
+        $save->email = $this->email;
+        $save->role = $this->role;
+        $save->save();
+        if ($this->password) {
+            $save->password = bcrypt($this->password);
+        }
+        $this->reset(['name', 'email', 'role', 'choosedUser']);
+        $this->ChoseMenu = 'see';
+    }
+
     public function chooseDelete($id)
     {
         $this->choosedUser = ModelUser::findOrFail($id);
