@@ -5,11 +5,11 @@
             <div class="col-12">
                 <button wire:click="choseMenu('see')"
                     class="btn {{ $ChoseMenu == 'see' ? 'btn-primary' : 'btn-outline-primary' }}">
-                    All Users
+                    All Product
                 </button>
                 <button wire:click="choseMenu('add')"
                     class="btn {{ $ChoseMenu == 'add' ? 'btn-primary' : 'btn-outline-primary' }}">
-                    Add Users
+                    Add Product
                 </button>
                 <button wire:loading class="btn btn-info">
                     Loading..
@@ -21,7 +21,7 @@
                 @if ($ChoseMenu == 'see')
                     <div class="card border-primary">
                         <div class="card-header">
-                            All Users
+                            All Product
                         </div>
                         <div class="card-body">
                             <table class="table table-bordered">
@@ -60,7 +60,7 @@
                 @elseif ($ChoseMenu == 'add')
                     <div class="card border-primary">
                         <div class="card-header">
-                            Add User
+                            Add Product
                         </div>
                         <div class="card-body">
                             <form action="" wire:submit='save'>
@@ -102,7 +102,7 @@
                 @elseif ($ChoseMenu == 'edit')
                     <div class="card border-primary">
                         <div class="card-header">
-                            Edit User
+                            Edit Product
                         </div>
                         <div class="card-body">
                             <form action="" wire:submit='update'>
@@ -146,11 +146,11 @@
                 @elseif ($ChoseMenu == 'delete')
                     <div class="card border-danger">
                         <div class="card-header bg-danger text-white">
-                            Delete User
+                            Delete Product
                         </div>
                         <div class="card-body">
                             Do you sure to delete this user ?
-                            <p>Name: {{ $choosedUser->name }}</p>
+                            <p>Name: {{ $choseProduct->name }}</p>
 
                             <button class="btn btn-danger" wire:click='delete'>Delete</button>
                             <button class="btn btn-secondary" wire:click='cancel'>Cancel</button>
