@@ -71,27 +71,23 @@
                                 @enderror
                                 <br />
 
-                                <label for="">Email</label>
-                                <input type="email" class="form-control" wire:model='email' />
-                                @error('email')
+                                <label for="">Barcode</label>
+                                <input type="text" class="form-control" wire:model='barcode' />
+                                @error('barcode')
                                     <Span class="text-danger">{{ $message }}</Span>
                                 @enderror
                                 <br />
 
-                                <label for="">Password</label>
-                                <input type="password" class="form-control" wire:model='password' />
-                                @error('password')
+                                <label for="">Price</label>
+                                <input type="number" class="form-control" wire:model='price' />
+                                @error('price')
                                     <Span class="text-danger">{{ $message }}</Span>
                                 @enderror
                                 <br />
 
-                                <label for="">Role</label>
-                                <select name="" id="" class="form-control" wire:model="role">
-                                    <option value="">--Choose your role</option>
-                                    <option value="admin">Admin</option>
-                                    <option value="cashier"> Casher</option>
-                                </select>
-                                @error('role')
+                                <label for="">Stock</label>
+                                <input type="number" class="form-control" wire:model='stock' />
+                                @error('stock')
                                     <Span class="text-danger">{{ $message }}</Span>
                                 @enderror
                                 <br />

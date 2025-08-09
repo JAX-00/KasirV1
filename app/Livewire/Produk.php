@@ -9,17 +9,18 @@ class Produk extends Component
 {
     public $ChoseMenu = 'see';
     public $name;
-    public $email;
-    public $role;
-    public $password;
+    public $barcode;
+    public $stock;
+    public $price;
     public $choseProduct;
 
     public function chooseEdit($id)
     {
-        $this->choseProduct = ModelUser::findOrFail($id);
+        $this->choseProduct = ModelProduct::findOrFail($id);
         $this->name = $this->choseProduct->name;
-        $this->email = $this->choseProduct->email;
-        $this->role = $this->choseProduct->role;
+        $this->barcode = $this->choseProduct->barcode;
+        $this->stock = $this->choseProduct->stock;
+        $this->price = $this->choseProduct->price;
         $this->ChoseMenu = 'edit';
     }
 
@@ -28,31 +29,33 @@ class Produk extends Component
         // make validation
         $this->validate([
             'name' => 'required',
-            'email' => ['required', 'email', 'unique:users,email,' . $this->choseProduct->id],
-            'role' => 'required',
+            'barcode' => ['required', 'barcode', 'unique:users,barcode,' . $this->choseProduct->id],
+            'stock' => 'required',
+            'price' => 'required',
         ], [
             // Show massage if the condition not met
             'name.required' => 'Name is required',
-            'email.required' => 'Email is required',
-            'email.email' => 'Format should be an email address',
-            'email.unique' => 'The email is already registered',
-            'role.required' => 'Role is required',
+            'barcode.required' => 'barcode is required',
+            'barcode.barcode' => 'Format should be an barcode address',
+            'barcode.unique' => 'The barcode is already registered',
+            'stock.required' => 'stock is required',
+            'price.required' => 'Price is required',
         ]);
         $save = $this->choseProduct;
         $save->name = $this->name;
-        $save->email = $this->email;
-        $save->role = $this->role;
+        $save->barcode = $this->barcode;
+        $save->stock = $this->stock;
         $save->save();
-        if ($this->password) {
-            $save->password = bcrypt($this->password);
+        if ($this->price) {
+            $save->price = bcrypt($this->price);
         }
-        $this->reset(['name', 'email', 'role', 'choseProduct']);
+        $this->reset(['name', 'barcode', 'stock', 'choseProduct']);
         $this->ChoseMenu = 'see';
     }
 
     public function chooseDelete($id)
     {
-        $this->choseProduct = ModelUser::findOrFail($id);
+        $this->choseProduct = ModelProduct::findOrFail($id);
         $this->ChoseMenu = 'delete';
     }
 
@@ -72,26 +75,25 @@ class Produk extends Component
         // make validation
         $this->validate([
             'name' => 'required',
-            'email' => ['required', 'email', 'unique:users,email'],
-            'role' => 'required',
-            'password' => 'required'
+            'barcode' => ['required', 'unique:products,barcode'],
+            'stock' => 'required',
+            'price' => 'required'
         ], [
             // Show massage if the condition not met
             'name.required' => 'Name is required',
-            'email.required' => 'Email is required',
-            'email.email' => 'Format should be an email address',
-            'email.unique' => 'The email is already registered',
-            'role.required' => 'Role is required',
-            'password.required' => 'Password is required',
+            'barcode.required' => 'barcode is required',
+            'barcode.unique' => 'The barcode is already registered',
+            'stock.required' => 'stock is required',
+            'price.required' => 'price is required',
         ]);
-        $save = new ModelUser();
+        $save = new ModelProduct();
         $save->name = $this->name;
-        $save->email = $this->email;
-        $save->password = bcrypt($this->role);
-        $save->role = $this->role;
+        $save->barcode = $this->barcode;
+        $save->price = $this->price;
+        $save->stock = $this->stock;
         $save->save();
 
-        $this->reset(['name', 'email', 'role', 'password']);
+        $this->reset(['name', 'barcode', 'stock', 'price']);
         $this->ChoseMenu = 'see';
     }
 
