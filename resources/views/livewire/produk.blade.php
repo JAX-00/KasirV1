@@ -109,33 +109,27 @@
                                 @enderror
                                 <br />
 
-                                <label for="">Email</label>
-                                <input type="email" class="form-control" wire:model='email' />
-                                @error('email')
+                                <label for="">Barcode</label>
+                                <input type="text" class="form-control" wire:model='barcode' />
+                                @error('barcode')
                                     <Span class="text-danger">{{ $message }}</Span>
                                 @enderror
                                 <br />
 
-                                <label for="">Password</label>
-                                <input type="password" class="form-control" wire:model='password' />
-                                @error('password')
+                                <label for="">Price</label>
+                                <input type="number" class="form-control" wire:model='price' />
+                                @error('price')
                                     <Span class="text-danger">{{ $message }}</Span>
                                 @enderror
                                 <br />
 
-                                <label for="">Role</label>
-                                <select name="" id="" class="form-control" wire:model="role">
-                                    <option value="">--Choose your role</option>
-                                    <option value="admin">Admin</option>
-                                    <option value="cashier"> Casher</option>
-                                </select>
-                                @error('role')
+                                <label for="">Stock</label>
+                                <input type="number" class="form-control" wire:model='stock' />
+                                @error('stock')
                                     <Span class="text-danger">{{ $message }}</Span>
                                 @enderror
                                 <br />
                                 <button type="submit" class="btn btn-primary mt-4">Save</button>
-                                <button type="button" class="btn btn-secondary mt-4"
-                                    wire:click='cancel'>Cancel</button>
                             </form>
                         </div>
                     </div>
@@ -145,9 +139,9 @@
                             Delete Product
                         </div>
                         <div class="card-body">
-                            Do you sure to delete this user ?
+                            Do you sure to delete this Product ?
                             <p>Name: {{ $choseProduct->name }}</p>
-
+                            <p>Barcode: {{ $choseProduct->barcode }}</p>
                             <button class="btn btn-danger" wire:click='delete'>Delete</button>
                             <button class="btn btn-secondary" wire:click='cancel'>Cancel</button>
                         </div>

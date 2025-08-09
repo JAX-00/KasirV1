@@ -29,27 +29,25 @@ class Produk extends Component
         // make validation
         $this->validate([
             'name' => 'required',
-            'barcode' => ['required', 'barcode', 'unique:users,barcode,' . $this->choseProduct->id],
+            'barcode' => ['required', 'unique:products,barcode, ' . $this->choseProduct->id],
             'stock' => 'required',
-            'price' => 'required',
+            'price' => 'required'
         ], [
             // Show massage if the condition not met
             'name.required' => 'Name is required',
             'barcode.required' => 'barcode is required',
-            'barcode.barcode' => 'Format should be an barcode address',
             'barcode.unique' => 'The barcode is already registered',
             'stock.required' => 'stock is required',
-            'price.required' => 'Price is required',
+            'price.required' => 'price is required',
         ]);
         $save = $this->choseProduct;
         $save->name = $this->name;
         $save->barcode = $this->barcode;
+        $save->price = $this->price;
         $save->stock = $this->stock;
         $save->save();
-        if ($this->price) {
-            $save->price = bcrypt($this->price);
-        }
-        $this->reset(['name', 'barcode', 'stock', 'choseProduct']);
+
+        $this->reset();
         $this->ChoseMenu = 'see';
     }
 
